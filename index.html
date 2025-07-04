@@ -6,7 +6,8 @@
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
 
-    <title>Aulas de Biologia - Criado por Egipcio Corvo</title>
+    <title>Aulas de Biologia - Criado por Egipcio INDRA</title>
+   
 
 </head>
 <body>
@@ -398,20 +399,16 @@
 
     <script>
         const searchInput = document.getElementById('search-input');
-        const aulasList = document.getElementById('aulas-list');
-        const aulaItems = aulasList.querySelectorAll('.aula-item');
-
+        const aulaItems = document.querySelectorAll('.aula-item');
+    
         searchInput.addEventListener('input', function() {
             const searchTerm = searchInput.value.toLowerCase();
-
+    
             aulaItems.forEach(item => {
                 const title = item.querySelector('.materia-titulo').textContent.toLowerCase();
-                const materia = item.querySelector('.aula-conteudo .materia-titulo-interno').textContent.toLowerCase();
-                const conteudoMateria = item.querySelector('.aula-conteudo p:first-of-type').textContent.toLowerCase();
-                const exemploTitulo = item.querySelector('.aula-conteudo .exemplo-titulo').textContent.toLowerCase();
-                const conteudoExemplo = item.querySelector('.aula-conteudo p:nth-of-type(2)').textContent.toLowerCase();
-
-                if (title.includes(searchTerm) || materia.includes(searchTerm) || conteudoMateria.includes(searchTerm) || exemploTitulo.includes(searchTerm) || conteudoExemplo.includes(searchTerm)) {
+                const content = item.querySelector('.aula-conteudo').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || content.includes(searchTerm)) {
                     item.style.display = 'block';
                 } else {
                     item.style.display = 'none';
@@ -419,25 +416,18 @@
             });
         });
         
-        // Função para mostrar/esconder o conteúdo da aula ao clicar no título
         function toggleConteudo(titulo) {
             const aulaConteudo = titulo.nextElementSibling;
             if (aulaConteudo) {
                 aulaConteudo.style.display = aulaConteudo.style.display === 'block' ? 'none' : 'block';
             }
         }
-
-        // Esconde todos os conteúdos da aula ao carregar a página
+    
         document.addEventListener('DOMContentLoaded', function() {
-            const todosConteudos = document.querySelectorAll('.aula-conteudo');
-            todosConteudos.forEach(conteudo => {
+            document.querySelectorAll('.aula-conteudo').forEach(conteudo => {
                 conteudo.style.display = 'none';
             });
-
-            console.log(aulasList) //  Confia no meu Deus, Verifica as listas presentes e se foram vazias ou não por algum motivo desconhecido no console do navegador. 
-
         });
-
     </script>
 </body> 
 </html>
